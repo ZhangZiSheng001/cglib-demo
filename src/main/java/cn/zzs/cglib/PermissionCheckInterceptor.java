@@ -29,7 +29,6 @@ public class PermissionCheckInterceptor implements MethodInterceptor {
 		Object obj2 = proxy.invokeSuper(obj, args);
 		return obj2;
 	}
-
 }
 
 	
