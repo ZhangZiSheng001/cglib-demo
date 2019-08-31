@@ -4,7 +4,7 @@
 ## 简介  
 cglib基于`asm`字节码生成框架，可以动态地改造指定类的方法，是spring实现AOP的重要支持。与JDK的动态代理不同，cglib的代理类继承了被代理类，而不是实现被代理类的接口。  
 
-注意：在字节码的生成和类的创建上，JDK的动态代理效率更高；在代理方法的执行效率上，由于采用了`FastClass`，所有cglib的效率更高。  
+*注意：在字节码的生成和类的创建上，JDK的动态代理效率更高；在代理方法的执行效率上，由于采用了`FastClass`，所有cglib的效率更高。*  因为JDK的动态代理中代理类中的方法是通过反射调用的，而cglib为代理类创建了FastClass对象，只要知道方法索引就可以直接调用指定方法。  
 
 ## 使用例子
 ### 需求
@@ -15,6 +15,14 @@ JDK：1.8.0_201
 maven：3.6.1  
 
 IDE：Spring Tool Suites4 for Eclipse  
+
+### 代理的主要步骤
+创建`Enhancer`对象：`Enhancer`是cglib代理的对外窗口，以下都是调用这个类的方法  
+`setSuperclass(Class superclass)`：设置被代理的类  
+`setCallback(final Callback callback)`：设置被代理类如何增强，这个`Callback`对象需要我们创建实现类，实现的接口是`MethodInterceptor`（是`Callback`的子接口）  
+`create()`：获得代理类
+
+
 ### 创建项目
 项目类型Maven Project，打包方式jar
 ### 引入依赖
@@ -126,5 +134,6 @@ IDE：Spring Tool Suites4 for Eclipse
 	修改用户
 	-------------
 	查找用户
+
 
 > 学习使我快乐！！
