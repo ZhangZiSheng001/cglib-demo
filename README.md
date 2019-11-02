@@ -302,7 +302,7 @@ public class LoadingCache<K, KK, V> {
 ## cglib生成文件
 在一开始指定的路径下，可以看到生成了三个文件，前面简介里说到在代理类的生成上，cglib的效率低于JDK动态代理，主要原因在于多生成了两个FastClass文件，至于这两个文件有什么用呢？接下来会重点分析： 
  
-![cglib生成class文件](https://github.com/ZhangZiSheng001/cglib-demo/tree/master/img/cglib_generate_class.png)
+![cglib生成class文件](https://github.com/ZhangZiSheng001/cglib-demo/blob/master/img/cglib_generate_class.png)
 
 ## 代理类源码
 本文采用`Luyten`作为反编译工具，一开始用`jd-gui`解析，但错误太多。  
@@ -370,7 +370,7 @@ public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController im
 通过以下代码可以知道，`MethodProxy`对象`CGLIB$update$0$Proxy`持有了代理类和被代理类的Class实例，以及代理方法和被代理方法的符号表示，这两个sig用于后面获取方法索引。 
  
 ```java
-	//Class c1, 被代理对象 
+    //Class c1, 被代理对象 
     //Class c2, 代理对象 
     //String desc, 参数列表描述  
     //String name1, 被代理方法  
@@ -434,9 +434,9 @@ private static class FastClassInfo{
 
 ```java
     //传入参数：
-	//n：方法索引
-	//o：代理类实例
-	//array：方法输入参数
+    //n：方法索引
+    //o：代理类实例
+    //array：方法输入参数
     public Object invoke(final int n, final Object o, final Object[] array) throws InvocationTargetException {
         final UserController$$EnhancerByCGLIB$$e6f193aa userController$$EnhancerByCGLIB$$e6f193aa = (UserController$$EnhancerByCGLIB$$e6f193aa)o;
         try {
