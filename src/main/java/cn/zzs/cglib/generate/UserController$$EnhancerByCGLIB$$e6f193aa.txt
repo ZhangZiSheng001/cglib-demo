@@ -1,0 +1,202 @@
+package cn.zzs.cglib;
+
+import java.lang.reflect.*;
+
+import cn.zzs.cglib.UserController;
+import net.sf.cglib.proxy.*;
+import net.sf.cglib.core.*;
+//生成类的名字规则是：被代理classname + "$$"+classgeneratorname+"ByCGLIB"+"$$"+key的hashcode
+public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController implements Factory {
+    private boolean CGLIB$BOUND;
+    public static Object CGLIB$FACTORY_DATA;
+    private static final ThreadLocal CGLIB$THREAD_CALLBACKS;
+    private static final Callback[] CGLIB$STATIC_CALLBACKS;
+    
+    //我们一开始传入的MethodInterceptor对象
+    private MethodInterceptor CGLIB$CALLBACK_0;
+    private static Object CGLIB$CALLBACK_FILTER;
+    //被代理类update方法
+    private static final Method CGLIB$update$0$Method;
+    //代理类update方法
+    private static final MethodProxy CGLIB$update$0$Proxy;
+    private static final Object[] CGLIB$emptyArgs;
+    
+    static void CGLIB$STATICHOOK1() {
+        CGLIB$THREAD_CALLBACKS = new ThreadLocal();
+        CGLIB$emptyArgs = new Object[0];
+        //代理类Class对象
+        final Class<?> forName = Class.forName("cn.zzs.cglib.UserController$$EnhancerByCGLIB$$e6f193aa");
+        //被代理类Class对象
+        final Class<?> forName2;
+        final Method[] methods = ReflectUtils.findMethods(new String[] { "update", "()V", "find", "()V", "delete", "()V", "save", "()V" }, 
+        		(forName2 = Class.forName("cn.zzs.cglib.UserController")).getDeclaredMethods());
+        //初始化被代理类update方法
+        CGLIB$update$0$Method = methods[0];
+        //初始化代理类update方法
+        CGLIB$update$0$Proxy = MethodProxy.create((Class)forName2, (Class)forName, "()V", "update", "CGLIB$update$0");
+    }
+    
+    final void CGLIB$update$0() {
+        super.update();
+    }
+    
+    public final void update() {
+        MethodInterceptor cglib$CALLBACK_2;
+        MethodInterceptor cglib$CALLBACK_0;
+        if ((cglib$CALLBACK_0 = (cglib$CALLBACK_2 = this.CGLIB$CALLBACK_0)) == null) {
+            CGLIB$BIND_CALLBACKS(this);
+            cglib$CALLBACK_2 = (cglib$CALLBACK_0 = this.CGLIB$CALLBACK_0);
+        }
+        //一般走这里，即调用我们传入MethodInterceptor对象的intercept方法
+        if (cglib$CALLBACK_0 != null) {
+            cglib$CALLBACK_2.intercept((Object)this, UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$update$0$Method, UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$emptyArgs, UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$update$0$Proxy);
+            return;
+        }
+        super.update();
+    }
+    
+    private static final void CGLIB$BIND_CALLBACKS(final Object o) {
+        final UserController$$EnhancerByCGLIB$$e6f193aa userController$$EnhancerByCGLIB$$e6f193aa = (UserController$$EnhancerByCGLIB$$e6f193aa)o;
+        if (!userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$BOUND) {
+            userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$BOUND = true;
+            Object o2;
+            if ((o2 = UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$THREAD_CALLBACKS.get()) != null || (o2 = UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$STATIC_CALLBACKS) != null) {
+                userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$CALLBACK_0 = (MethodInterceptor)((Callback[])o2)[0];
+            }
+        }
+    }    
+    
+    public static MethodProxy CGLIB$findMethodProxy(final Signature signature) {
+        final String string = signature.toString();
+        switch (string.hashCode()) {
+            case -1949253108: {
+                if (string.equals("update()V")) {
+                    return UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$update$0$Proxy;
+                }
+                break;
+            }
+            case -853237988: {
+                if (string.equals("find()V")) {
+                    return UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$find$1$Proxy;
+                }
+                break;
+            }
+            case -508378822: {
+                if (string.equals("clone()Ljava/lang/Object;")) {
+                    return UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$clone$7$Proxy;
+                }
+                break;
+            }
+            case -358764054: {
+                if (string.equals("delete()V")) {
+                    return UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$delete$2$Proxy;
+                }
+                break;
+            }
+            case 1826985398: {
+                if (string.equals("equals(Ljava/lang/Object;)Z")) {
+                    return UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$equals$4$Proxy;
+                }
+                break;
+            }
+            case 1872760024: {
+                if (string.equals("save()V")) {
+                    return UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$save$3$Proxy;
+                }
+                break;
+            }
+            case 1913648695: {
+                if (string.equals("toString()Ljava/lang/String;")) {
+                    return UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$toString$5$Proxy;
+                }
+                break;
+            }
+            case 1984935277: {
+                if (string.equals("hashCode()I")) {
+                    return UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$hashCode$6$Proxy;
+                }
+                break;
+            }
+        }
+        return null;
+    }
+    
+    public UserController$$EnhancerByCGLIB$$e6f193aa() {
+        CGLIB$BIND_CALLBACKS(this);
+    }
+    
+    public static void CGLIB$SET_THREAD_CALLBACKS(final Callback[] array) {
+        UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$THREAD_CALLBACKS.set(array);
+    }
+    
+    public static void CGLIB$SET_STATIC_CALLBACKS(final Callback[] cglib$STATIC_CALLBACKS) {
+        CGLIB$STATIC_CALLBACKS = cglib$STATIC_CALLBACKS;
+    }
+
+    
+    public Object newInstance(final Callback[] array) {
+        CGLIB$SET_THREAD_CALLBACKS(array);
+        final UserController$$EnhancerByCGLIB$$e6f193aa userController$$EnhancerByCGLIB$$e6f193aa = new UserController$$EnhancerByCGLIB$$e6f193aa();
+        CGLIB$SET_THREAD_CALLBACKS(null);
+        return userController$$EnhancerByCGLIB$$e6f193aa;
+    }
+    
+    public Object newInstance(final Callback callback) {
+        CGLIB$SET_THREAD_CALLBACKS(new Callback[] { callback });
+        final UserController$$EnhancerByCGLIB$$e6f193aa userController$$EnhancerByCGLIB$$e6f193aa = new UserController$$EnhancerByCGLIB$$e6f193aa();
+        CGLIB$SET_THREAD_CALLBACKS(null);
+        return userController$$EnhancerByCGLIB$$e6f193aa;
+    }
+    
+    public Object newInstance(final Class[] array, final Object[] array2, final Callback[] array3) {
+        CGLIB$SET_THREAD_CALLBACKS(array3);
+        switch (array.length) {
+            case 0: {
+                final UserController$$EnhancerByCGLIB$$e6f193aa userController$$EnhancerByCGLIB$$e6f193aa = new UserController$$EnhancerByCGLIB$$e6f193aa();
+                CGLIB$SET_THREAD_CALLBACKS(null);
+                return userController$$EnhancerByCGLIB$$e6f193aa;
+            }
+            default: {
+                throw new IllegalArgumentException("Constructor not found");
+            }
+        }
+    }
+    
+    public Callback getCallback(final int n) {
+        CGLIB$BIND_CALLBACKS(this);
+        Object cglib$CALLBACK_0 = null;
+        switch (n) {
+            case 0: {
+                cglib$CALLBACK_0 = this.CGLIB$CALLBACK_0;
+                break;
+            }
+            default: {
+                cglib$CALLBACK_0 = null;
+                break;
+            }
+        }
+        return (Callback)cglib$CALLBACK_0;
+    }
+    
+    public void setCallback(final int n, final Callback callback) {
+        switch (n) {
+            case 0: {
+                this.CGLIB$CALLBACK_0 = (MethodInterceptor)callback;
+                break;
+            }
+        }
+    }
+    
+    public Callback[] getCallbacks() {
+        CGLIB$BIND_CALLBACKS(this);
+        return new Callback[] { this.CGLIB$CALLBACK_0 };
+    }
+    
+    public void setCallbacks(final Callback[] array) {
+        this.CGLIB$CALLBACK_0 = (MethodInterceptor)array[0];
+    }
+    
+    static {
+        CGLIB$STATICHOOK1();
+    }
+}

@@ -1,0 +1,720 @@
+package cn.zzs.cglib;
+
+import net.sf.cglib.reflect.*;
+import net.sf.cglib.core.*;
+import net.sf.cglib.proxy.*;
+import java.lang.reflect.*;
+
+public class UserController$$EnhancerByCGLIB$$e6f193aa$$FastClassByCGLIB$$862d342a extends FastClass
+{
+    public UserController$$EnhancerByCGLIB$$e6f193aa$$FastClassByCGLIB$$862d342a(final Class clazz) {
+        super(clazz);
+    }
+    
+    public int getIndex(final Signature signature) {
+        final String string = signature.toString();
+        switch (string.hashCode()) {
+            case -2055565910: {
+                if (string.equals("CGLIB$SET_THREAD_CALLBACKS([Lnet/sf/cglib/proxy/Callback;)V")) {
+                    return 13;
+                }
+                break;
+            }
+            case -1949253108: {
+                if (string.equals("update()V")) {
+                    return 4;
+                }
+                break;
+            }
+            case -1860420502: {
+                if (string.equals("CGLIB$clone$7()Ljava/lang/Object;")) {
+                    return 26;
+                }
+                break;
+            }
+            case -1457535688: {
+                if (string.equals("CGLIB$STATICHOOK1()V")) {
+                    return 17;
+                }
+                break;
+            }
+            case -1411753352: {
+                if (string.equals("CGLIB$hashCode$6()I")) {
+                    return 23;
+                }
+                break;
+            }
+            case -894172689: {
+                if (string.equals("newInstance(Lnet/sf/cglib/proxy/Callback;)Ljava/lang/Object;")) {
+                    return 6;
+                }
+                break;
+            }
+            case -853237988: {
+                if (string.equals("find()V")) {
+                    return 8;
+                }
+                break;
+            }
+            case -623122092: {
+                if (string.equals("CGLIB$findMethodProxy(Lnet/sf/cglib/core/Signature;)Lnet/sf/cglib/proxy/MethodProxy;")) {
+                    return 18;
+                }
+                break;
+            }
+            case -508378822: {
+                if (string.equals("clone()Ljava/lang/Object;")) {
+                    return 3;
+                }
+                break;
+            }
+            case -419626537: {
+                if (string.equals("setCallbacks([Lnet/sf/cglib/proxy/Callback;)V")) {
+                    return 14;
+                }
+                break;
+            }
+            case -358764054: {
+                if (string.equals("delete()V")) {
+                    return 9;
+                }
+                break;
+            }
+            case -295466042: {
+                if (string.equals("CGLIB$save$3()V")) {
+                    return 19;
+                }
+                break;
+            }
+            case -49564596: {
+                if (string.equals("CGLIB$find$1()V")) {
+                    return 20;
+                }
+                break;
+            }
+            case 231902393: {
+                if (string.equals("CGLIB$delete$2()V")) {
+                    return 22;
+                }
+                break;
+            }
+            case 560567118: {
+                if (string.equals("setCallback(ILnet/sf/cglib/proxy/Callback;)V")) {
+                    return 11;
+                }
+                break;
+            }
+            case 593200387: {
+                if (string.equals("CGLIB$equals$4(Ljava/lang/Object;)Z")) {
+                    return 25;
+                }
+                break;
+            }
+            case 780219293: {
+                if (string.equals("CGLIB$update$0()V")) {
+                    return 24;
+                }
+                break;
+            }
+            case 811063227: {
+                if (string.equals("newInstance([Ljava/lang/Class;[Ljava/lang/Object;[Lnet/sf/cglib/proxy/Callback;)Ljava/lang/Object;")) {
+                    return 5;
+                }
+                break;
+            }
+            case 973717575: {
+                if (string.equals("getCallbacks()[Lnet/sf/cglib/proxy/Callback;")) {
+                    return 16;
+                }
+                break;
+            }
+            case 1221173700: {
+                if (string.equals("newInstance([Lnet/sf/cglib/proxy/Callback;)Ljava/lang/Object;")) {
+                    return 7;
+                }
+                break;
+            }
+            case 1230699260: {
+                if (string.equals("getCallback(I)Lnet/sf/cglib/proxy/Callback;")) {
+                    return 15;
+                }
+                break;
+            }
+            case 1584330438: {
+                if (string.equals("CGLIB$SET_STATIC_CALLBACKS([Lnet/sf/cglib/proxy/Callback;)V")) {
+                    return 12;
+                }
+                break;
+            }
+            case 1826985398: {
+                if (string.equals("equals(Ljava/lang/Object;)Z")) {
+                    return 0;
+                }
+                break;
+            }
+            case 1872760024: {
+                if (string.equals("save()V")) {
+                    return 10;
+                }
+                break;
+            }
+            case 1913648695: {
+                if (string.equals("toString()Ljava/lang/String;")) {
+                    return 1;
+                }
+                break;
+            }
+            case 1940521675: {
+                if (string.equals("CGLIB$toString$5()Ljava/lang/String;")) {
+                    return 21;
+                }
+                break;
+            }
+            case 1984935277: {
+                if (string.equals("hashCode()I")) {
+                    return 2;
+                }
+                break;
+            }
+        }
+        return -1;
+    }
+    
+    public int getIndex(final String s, final Class[] array) {
+        Label_1343: {
+            switch (s.hashCode()) {
+                case -1776922004: {
+                    if (!s.equals("toString")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 1;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case -1335458389: {
+                    if (!s.equals("delete")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 9;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case -1295482945: {
+                    if (!s.equals("equals")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 1: {
+                            if (array[0].getName().equals("java.lang.Object")) {
+                                return 0;
+                            }
+                            break Label_1343;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case -1053468136: {
+                    if (!s.equals("getCallbacks")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 16;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case -838846263: {
+                    if (!s.equals("update")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 4;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case -124978606: {
+                    if (!s.equals("CGLIB$equals$4")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 1: {
+                            if (array[0].getName().equals("java.lang.Object")) {
+                                return 25;
+                            }
+                            break Label_1343;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case -60403779: {
+                    if (!s.equals("CGLIB$SET_STATIC_CALLBACKS")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 1: {
+                            if (array[0].getName().equals("[Lnet.sf.cglib.proxy.Callback;")) {
+                                return 12;
+                            }
+                            break Label_1343;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case -29025552: {
+                    if (!s.equals("CGLIB$hashCode$6")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 23;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 3143097: {
+                    if (!s.equals("find")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 8;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 3522941: {
+                    if (!s.equals("save")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 10;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 85179481: {
+                    if (!s.equals("CGLIB$SET_THREAD_CALLBACKS")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 1: {
+                            if (array[0].getName().equals("[Lnet.sf.cglib.proxy.Callback;")) {
+                                return 13;
+                            }
+                            break Label_1343;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 94756189: {
+                    if (!s.equals("clone")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 3;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 113325372: {
+                    if (!s.equals("CGLIB$delete$2")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 22;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 146042505: {
+                    if (!s.equals("CGLIB$find$1")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 20;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 147696667: {
+                    if (!s.equals("hashCode")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 2;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 161998109: {
+                    if (!s.equals("CGLIB$STATICHOOK1")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 17;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 495524492: {
+                    if (!s.equals("setCallbacks")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 1: {
+                            if (array[0].getName().equals("[Lnet.sf.cglib.proxy.Callback;")) {
+                                return 14;
+                            }
+                            break Label_1343;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 511072591: {
+                    if (!s.equals("CGLIB$save$3")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 19;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 616208600: {
+                    if (!s.equals("CGLIB$update$0")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 24;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 1154623345: {
+                    if (!s.equals("CGLIB$findMethodProxy")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 1: {
+                            if (array[0].getName().equals("net.sf.cglib.core.Signature")) {
+                                return 18;
+                            }
+                            break Label_1343;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 1543336192: {
+                    if (!s.equals("CGLIB$toString$5")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 21;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 1811874389: {
+                    if (!s.equals("newInstance")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 1: {
+                            final String name = array[0].getName();
+                            switch (name.hashCode()) {
+                                case -845341380: {
+                                    if (name.equals("net.sf.cglib.proxy.Callback")) {
+                                        return 6;
+                                    }
+                                    break;
+                                }
+                                case 1730110032: {
+                                    if (name.equals("[Lnet.sf.cglib.proxy.Callback;")) {
+                                        return 7;
+                                    }
+                                    break;
+                                }
+                            }
+                            break Label_1343;
+                        }
+                        case 3: {
+                            if (array[0].getName().equals("[Ljava.lang.Class;") && array[1].getName().equals("[Ljava.lang.Object;") && array[2].getName().equals("[Lnet.sf.cglib.proxy.Callback;")) {
+                                return 5;
+                            }
+                            break Label_1343;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 1817099975: {
+                    if (!s.equals("setCallback")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 2: {
+                            if (array[0].getName().equals("int") && array[1].getName().equals("net.sf.cglib.proxy.Callback")) {
+                                return 11;
+                            }
+                            break Label_1343;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 1905679803: {
+                    if (!s.equals("getCallback")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 1: {
+                            if (array[0].getName().equals("int")) {
+                                return 15;
+                            }
+                            break Label_1343;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+                case 1951977613: {
+                    if (!s.equals("CGLIB$clone$7")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 26;
+                        }
+                        default: {
+                            break Label_1343;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        return -1;
+    }
+    
+    public int getIndex(final Class[] array) {
+        switch (array.length) {
+            case 0: {
+                return 0;
+            }
+            default: {
+                return -1;
+            }
+        }
+    }
+    
+    public Object invoke(final int n, final Object o, final Object[] array) throws InvocationTargetException {
+        final UserController$$EnhancerByCGLIB$$e6f193aa userController$$EnhancerByCGLIB$$e6f193aa = (UserController$$EnhancerByCGLIB$$e6f193aa)o;
+        try {
+            switch (n) {
+                case 0: {
+                    return new Boolean(userController$$EnhancerByCGLIB$$e6f193aa.equals(array[0]));
+                }
+                case 1: {
+                    return userController$$EnhancerByCGLIB$$e6f193aa.toString();
+                }
+                case 2: {
+                    return new Integer(userController$$EnhancerByCGLIB$$e6f193aa.hashCode());
+                }
+                case 3: {
+                    return userController$$EnhancerByCGLIB$$e6f193aa.clone();
+                }
+                case 4: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.update();
+                    return null;
+                }
+                case 5: {
+                    return userController$$EnhancerByCGLIB$$e6f193aa.newInstance((Class[])array[0], (Object[])array[1], (Callback[])array[2]);
+                }
+                case 6: {
+                    return userController$$EnhancerByCGLIB$$e6f193aa.newInstance((Callback)array[0]);
+                }
+                case 7: {
+                    return userController$$EnhancerByCGLIB$$e6f193aa.newInstance((Callback[])array[0]);
+                }
+                case 8: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.find();
+                    return null;
+                }
+                case 9: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.delete();
+                    return null;
+                }
+                case 10: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.save();
+                    return null;
+                }
+                case 11: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.setCallback(((Number)array[0]).intValue(), (Callback)array[1]);
+                    return null;
+                }
+                case 12: {
+                    UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$SET_STATIC_CALLBACKS((Callback[])array[0]);
+                    return null;
+                }
+                case 13: {
+                    UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$SET_THREAD_CALLBACKS((Callback[])array[0]);
+                    return null;
+                }
+                case 14: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.setCallbacks((Callback[])array[0]);
+                    return null;
+                }
+                case 15: {
+                    return userController$$EnhancerByCGLIB$$e6f193aa.getCallback(((Number)array[0]).intValue());
+                }
+                case 16: {
+                    return userController$$EnhancerByCGLIB$$e6f193aa.getCallbacks();
+                }
+                case 17: {
+                    UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$STATICHOOK1();
+                    return null;
+                }
+                case 18: {
+                    return UserController$$EnhancerByCGLIB$$e6f193aa.CGLIB$findMethodProxy((Signature)array[0]);
+                }
+                case 19: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$save$3();
+                    return null;
+                }
+                case 20: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$find$1();
+                    return null;
+                }
+                case 21: {
+                    return userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$toString$5();
+                }
+                case 22: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$delete$2();
+                    return null;
+                }
+                case 23: {
+                    return new Integer(userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$hashCode$6());
+                }
+                case 24: {
+                    userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$update$0();
+                    return null;
+                }
+                case 25: {
+                    return new Boolean(userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$equals$4(array[0]));
+                }
+                case 26: {
+                    return userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$clone$7();
+                }
+            }
+        }
+        catch (Throwable t) {
+            throw new InvocationTargetException(t);
+        }
+        throw new IllegalArgumentException("Cannot find matching method/constructor");
+    }
+    
+    public Object newInstance(final int n, final Object[] array) throws InvocationTargetException {
+        try {
+            switch (n) {
+                case 0: {
+                    return new UserController$$EnhancerByCGLIB$$e6f193aa();
+                }
+            }
+        }
+        catch (Throwable t) {
+            throw new InvocationTargetException(t);
+        }
+        throw new IllegalArgumentException("Cannot find matching method/constructor");
+    }
+    
+    public int getMaxIndex() {
+        return 26;
+    }
+}

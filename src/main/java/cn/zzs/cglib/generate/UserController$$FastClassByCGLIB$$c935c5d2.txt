@@ -1,0 +1,236 @@
+package cn.zzs.cglib;
+
+import net.sf.cglib.reflect.*;
+import net.sf.cglib.core.*;
+import java.lang.reflect.*;
+
+public class UserController$$FastClassByCGLIB$$c935c5d2 extends FastClass
+{
+    public UserController$$FastClassByCGLIB$$c935c5d2(final Class clazz) {
+        super(clazz);
+    }
+    
+    public int getIndex(final Signature signature) {
+        final String string = signature.toString();
+        switch (string.hashCode()) {
+            case -1949253108: {
+                if (string.equals("update()V")) {
+                    return 0;
+                }
+                break;
+            }
+            case -853237988: {
+                if (string.equals("find()V")) {
+                    return 1;
+                }
+                break;
+            }
+            case -358764054: {
+                if (string.equals("delete()V")) {
+                    return 2;
+                }
+                break;
+            }
+            case 1826985398: {
+                if (string.equals("equals(Ljava/lang/Object;)Z")) {
+                    return 4;
+                }
+                break;
+            }
+            case 1872760024: {
+                if (string.equals("save()V")) {
+                    return 3;
+                }
+                break;
+            }
+            case 1913648695: {
+                if (string.equals("toString()Ljava/lang/String;")) {
+                    return 5;
+                }
+                break;
+            }
+            case 1984935277: {
+                if (string.equals("hashCode()I")) {
+                    return 6;
+                }
+                break;
+            }
+        }
+        return -1;
+    }
+    
+    public int getIndex(final String s, final Class[] array) {
+        Label_0339: {
+            switch (s.hashCode()) {
+                case -1776922004: {
+                    if (!s.equals("toString")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 5;
+                        }
+                        default: {
+                            break Label_0339;
+                        }
+                    }
+                    break;
+                }
+                case -1335458389: {
+                    if (!s.equals("delete")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 2;
+                        }
+                        default: {
+                            break Label_0339;
+                        }
+                    }
+                    break;
+                }
+                case -1295482945: {
+                    if (!s.equals("equals")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 1: {
+                            if (array[0].getName().equals("java.lang.Object")) {
+                                return 4;
+                            }
+                            break Label_0339;
+                        }
+                        default: {
+                            break Label_0339;
+                        }
+                    }
+                    break;
+                }
+                case -838846263: {
+                    if (!s.equals("update")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 0;
+                        }
+                        default: {
+                            break Label_0339;
+                        }
+                    }
+                    break;
+                }
+                case 3143097: {
+                    if (!s.equals("find")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 1;
+                        }
+                        default: {
+                            break Label_0339;
+                        }
+                    }
+                    break;
+                }
+                case 3522941: {
+                    if (!s.equals("save")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 3;
+                        }
+                        default: {
+                            break Label_0339;
+                        }
+                    }
+                    break;
+                }
+                case 147696667: {
+                    if (!s.equals("hashCode")) {
+                        break;
+                    }
+                    switch (array.length) {
+                        case 0: {
+                            return 6;
+                        }
+                        default: {
+                            break Label_0339;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        return -1;
+    }
+    
+    public int getIndex(final Class[] array) {
+        switch (array.length) {
+            case 0: {
+                return 0;
+            }
+            default: {
+                return -1;
+            }
+        }
+    }
+    
+    public Object invoke(final int n, final Object o, final Object[] array) throws InvocationTargetException {
+        final UserController userController = (UserController)o;
+        try {
+            switch (n) {
+                case 0: {
+                    userController.update();
+                    return null;
+                }
+                case 1: {
+                    userController.find();
+                    return null;
+                }
+                case 2: {
+                    userController.delete();
+                    return null;
+                }
+                case 3: {
+                    userController.save();
+                    return null;
+                }
+                case 4: {
+                    return new Boolean(userController.equals(array[0]));
+                }
+                case 5: {
+                    return userController.toString();
+                }
+                case 6: {
+                    return new Integer(userController.hashCode());
+                }
+            }
+        }
+        catch (Throwable t) {
+            throw new InvocationTargetException(t);
+        }
+        throw new IllegalArgumentException("Cannot find matching method/constructor");
+    }
+    
+    public Object newInstance(final int n, final Object[] array) throws InvocationTargetException {
+        try {
+            switch (n) {
+                case 0: {
+                    return new UserController();
+                }
+            }
+        }
+        catch (Throwable t) {
+            throw new InvocationTargetException(t);
+        }
+        throw new IllegalArgumentException("Cannot find matching method/constructor");
+    }
+    
+    public int getMaxIndex() {
+        return 6;
+    }
+}
