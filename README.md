@@ -1,4 +1,4 @@
-# Table of Contents
+# 目录
 
 * [简介](#简介)
   * [为什么会有动态代理？](#为什么会有动态代理)
@@ -495,4 +495,4 @@ private static class FastClassInfo{
     }
 ```
 
-> 学习使我快乐！！
+> 版权所有，相关源码请移步:https://github.com/ZhangZiSheng001/cglib-demo.git
