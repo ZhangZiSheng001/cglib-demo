@@ -495,4 +495,4 @@ private static class FastClassInfo{
     }
 ```
 
-> 版权所有，相关源码请移步:https://github.com/ZhangZiSheng001/cglib-demo.git
+> 本文为原创文章，转载请附上原文出处链接：https://github.com/ZhangZiSheng001/cglib-demo
