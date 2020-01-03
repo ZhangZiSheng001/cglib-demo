@@ -27,62 +27,70 @@
   * [FastClass.invoke](#fastclassinvoke)
 
 # 简介 
+
 ## 为什么会有动态代理？
-举个例子，当前有一个用户操作类，要求每个方法执行前打印访问日志。  
+
+举个例子，当前有一个用户操作类，要求每个方法执行前打印访问日志。
 
 这里可以采用两种方式：
 
-第一种，静态代理。即通过继承原有类来对方法进行扩展。  
+第一种，静态代理。即通过继承原有类来对方法进行扩展。
 
-当然，这种方式可以实现需求，但是当类的方法很多时，我们需要逐个添加打印日志的代码，非常繁琐。此时，如果要求加入权限校验，这个时候又需要再创建一个代理类。  
+当然，这种方式可以实现需求，但是当类的方法很多时，我们需要逐个添加打印日志的代码，非常繁琐。此时，如果要求加入权限校验，这个时候又需要再创建一个代理类。
 
-第二种，动态代理。即通过拦截器的方式来对方法进行扩展。  
+第二种，动态代理。即通过拦截器的方式来对方法进行扩展。
 
 动态代理只需要重写拦截器的一个方法，相比静态代理，可以减少很多代码。而且，动态代理要实现不同的代理类，只要选择不同的拦截器就可以了（可以选择多个），代理类不需要我们自己实现，可以有效实现代码解耦和可重用。
 
-不限于以上优点，动态代理被广泛应用于日志记录、性能统计、安全控制、事务处理、异常处理等等，是spring实现AOP的重要支持。  
+不限于以上优点，动态代理被广泛应用于日志记录、性能统计、安全控制、事务处理、异常处理等等，是spring实现AOP的重要支持。
 
 ## 常见的动态代理有哪些？
 
-常用的动态代理有：JDK动态代理、cglib。  
+常用的动态代理有：JDK动态代理、cglib。
 
-感兴趣的可以研究下`aspectJ`。  
+感兴趣的可以研究下`aspectJ`。
 
 ## 什么是cglib
+
 cglib基于`asm`字节码生成框架，用于动态生成代理类。与JDK动态代理不同，有以下几点不同：  
 
-1. JDK动态代理要求被代理类实现某个接口，而cglib无该要求。  
+1. JDK动态代理要求被代理类实现某个接口，而cglib无该要求。
 
-2. JDK动态代理生成的代理类是该接口实现类，也就是说，不能代理接口中没有的方法，而cglib生成的代理类继承被代理类。  
+2. JDK动态代理生成的代理类是该接口实现类，也就是说，不能代理接口中没有的方法，而cglib生成的代理类继承被代理类。
 
-3. 在字节码的生成和类的创建上，JDK的动态代理效率更高。  
+3. 在字节码的生成和类的创建上，JDK的动态代理效率更高。
 
-4. 在代理方法的执行效率上，由于采用了`FastClass`，cglib的效率更高（以空间换时间）。  
+4. 在代理方法的执行效率上，由于采用了`FastClass`，cglib的效率更高（以空间换时间）。
 
-注：因为JDK动态代理中代理类中的方法是通过反射调用的，而cglib因为引入了FastClass，可以直接调用代理类对象的方法。  
+注：因为JDK动态代理中代理类中的方法是通过反射调用的，而cglib因为引入了FastClass，可以直接调用代理类对象的方法。
 
 # 使用例子
+
 ## 需求
-模拟对用户数据进行增删改前打印访问日志  
+
+模拟对用户数据进行增删改前打印访问日志
 
 ## 工程环境
-JDK：1.8  
+JDK：1.8 
 
-maven：3.6.1  
+maven：3.6.1 
 
-IDE：STS4  
+IDE：STS4 
 
 ## 主要步骤
-1.  创建`Enhancer`对象：`Enhancer`是cglib代理的对外接口，以下操作都是调用这个类的方法  
-2.  `setSuperclass(Class superclass)`：代理谁？  
-3.  `setCallback(final Callback callback)`：怎么代理？（我们需要实现`Callback`的子接口`MethodInterceptor`，重写其中的`intercept`方法，该方法定义了代理规则)  
+
+1.  创建`Enhancer`对象：`Enhancer`是cglib代理的对外接口，以下操作都是调用这个类的方法 
+2.  `setSuperclass(Class superclass)`：代理谁？
+3.  `setCallback(final Callback callback)`：怎么代理？（我们需要实现`Callback`的子接口`MethodInterceptor`，重写其中的`intercept`方法，该方法定义了代理规则) 
 4.  `create()`：获得代理类
 5.  使用代理类
 
 ## 创建项目
-项目类型Maven Project，打包方式jar  
+
+项目类型Maven Project，打包方式jar 
 
 ## 引入依赖
+
 ```xml
 	<!-- cglib -->
 	<dependency>
@@ -101,8 +109,9 @@ IDE：STS4
 
 
 ## 编写被代理类
+
 包路径：`cn.zzs.cglib` 
-这里只是简单地测试，不再引入复杂的业务逻辑。  
+这里只是简单地测试，不再引入复杂的业务逻辑。
 
 ```java
 public class UserController {
@@ -122,6 +131,7 @@ public class UserController {
 ```
 
 ## 编写MethodInterceptor接口实现类 
+
 包路径：`cn.zzs.cglib` 
 
 ```java
@@ -146,10 +156,11 @@ public class LogInterceptor implements MethodInterceptor {
 ```
 
 ## 编写测试类
-这里的输出代理类的class文件，方便后面分析。  
 
-包路径：`test`下的`cn.zzs.cglib`  
-  
+这里的输出代理类的class文件，方便后面分析。 
+
+包路径：`test`下的`cn.zzs.cglib` 
+
 ```java
 public class CglibTest {
 	@Test
@@ -179,6 +190,7 @@ public class CglibTest {
 ```
 
 ## 运行结果
+
 	CGLIB debugging enabled, writing to 'D:/growUp/test'
 	-------------
 	进行save的日志记录
@@ -193,19 +205,22 @@ public class CglibTest {
 	查找用户
 
 # 源码分析-获得代理类的过程
+
 ## 主要步骤
-这里先简单说下过程：  
 
-1. 根据当前Enhancer实例生成一个唯一标识key  
+这里先简单说下过程：
 
-2. 用key去缓存中找代理类的Class实例  
+1. 根据当前Enhancer实例生成一个唯一标识key
+
+2. 用key去缓存中找代理类的Class实例
 
 3. 找到了就返回代理类实例
 
 4. 找不到就生成后放入map，再返回代理类实例
 
 ## 获得key 
-接下来具体介绍下。  
+
+接下来具体介绍下。
 
 首先，一进来就先调用了`createHelper()`。  
 
@@ -216,7 +231,7 @@ public class CglibTest {
         return createHelper();
     }
 ```
-在`createHelper()`中，创建了key，这个用于唯一标识当前类及相关配置，用于在缓存中存取代理类的Class实例。接着调用父类`AbstractClassGenerator`的`create(Object key)`方法获取代理类实例。  
+在`createHelper()`中，创建了key，这个用于唯一标识当前类及相关配置，用于在缓存中存取代理类的Class实例。接着调用父类`AbstractClassGenerator`的`create(Object key)`方法获取代理类实例。 
 
 ```java
     private Object createHelper() {
@@ -234,7 +249,7 @@ public class CglibTest {
         return result;
     }
 ```
-在`create(Object key)`中，会调用内部类`ClassLoaderData`的`get(AbstractClassGenerator gen, boolean useCache)`方法获取代理类的Class实例。  
+在`create(Object key)`中，会调用内部类`ClassLoaderData`的`get(AbstractClassGenerator gen, boolean useCache)`方法获取代理类的Class实例。
 
 ```java
     protected Object create(Object key) {
@@ -272,7 +287,8 @@ public class CglibTest {
     }
 ```
 ## 利用key从缓存中获取Class
-`ClassLoaderData`有一个重要字段`generatedClasses`，是一个`LoadingCache`缓存对象，存放着当前类加载器加载的代理类的Class类实例。在以下方法中，就是从它里面寻找，通过key匹配查找。  
+
+`ClassLoaderData`有一个重要字段`generatedClasses`，是一个`LoadingCache`缓存对象，存放着当前类加载器加载的代理类的Class类实例。在以下方法中，就是从它里面寻找，通过key匹配查找。
 
 ```java
         //这个对象存放着当前类加载器加载的代理类的Class类实例
@@ -317,8 +333,9 @@ public class LoadingCache<K, KK, V> {
     }
 ```
 ## 生成代理类Class
-以上基本说完如何从缓存中拿到代理类实例的方法，接下来简单看下生成代理类的过程，即loader.apply(Enhancer实例)，里面的generate会生成所需的Class对象，比较复杂，后面有时间再研究吧。  
- 
+
+以上基本说完如何从缓存中拿到代理类实例的方法，接下来简单看下生成代理类的过程，即loader.apply(Enhancer实例)，里面的generate会生成所需的Class对象，比较复杂，后面有时间再研究吧。
+
 ```java
     public Object apply(AbstractClassGenerator gen) {
         Class klass = gen.generate(ClassLoaderData.this);
@@ -326,21 +343,24 @@ public class LoadingCache<K, KK, V> {
     }
 ```
 # 代理类代码分析
+
 ## cglib生成文件
+
 在一开始指定的路径下，可以看到生成了三个文件，前面简介里说到在代理类的生成上，cglib的效率低于JDK动态代理，主要原因在于多生成了两个FastClass文件，至于这两个文件有什么用呢？接下来会重点分析： 
- 
+
 ![cglib生成class文件](https://github.com/ZhangZiSheng001/cglib-demo/blob/master/img/cglib_generate_class.png)
 
 ## 代理类源码
-本文采用`Luyten`作为反编译工具，一开始用`jd-gui`解析，但错误太多。  
 
-下面看看代理类的源码。  
+本文采用`Luyten`作为反编译工具，一开始用`jd-gui`解析，但错误太多。
 
-在初始化时，代理类的字段都会被初始化，这里涉及到`MethodProxy`的`create`方法。  
+下面看看代理类的源码。
 
-在实际调用update方法是会调用`MethodInterceptor`对象的`intercept`方法，执行我们自定义的代码后，最终会调用的是`MethodProxy`的`invokeSuper`方法。下面重点看看这些方法。  
+在初始化时，代理类的字段都会被初始化，这里涉及到`MethodProxy`的`create`方法。
 
-注：考虑篇幅问题，这里仅展示update方法。  
+在实际调用update方法是会调用`MethodInterceptor`对象的`intercept`方法，执行我们自定义的代码后，最终会调用的是`MethodProxy`的`invokeSuper`方法。下面重点看看这些方法。
+
+注：考虑篇幅问题，这里仅展示update方法。
 
 ```java
 //生成类的名字规则是：被代理classname + "$$"+classgeneratorname+"ByCGLIB"+"$$"+key的hashcode
@@ -394,8 +414,9 @@ public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController im
     }
 ```
 ## MethodProxy.create
+
 通过以下代码可以知道，`MethodProxy`对象`CGLIB$update$0$Proxy`持有了代理类和被代理类的Class实例，以及代理方法和被代理方法的符号表示，这两个sig用于后面获取方法索引。 
- 
+
 ```java
     //Class c1, 被代理对象 
     //Class c2, 代理对象 
@@ -414,8 +435,9 @@ public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController im
 ```
 
 ## MethodProxy.invokeSuper
-以下方法中会去创建两个FastClass文件，也就是我们看到的另外两个文件。当然，它们只会创建一次。  
-另外，通过原来的方法签名获得了update的方法索引。  
+
+以下方法中会去创建两个FastClass文件，也就是我们看到的另外两个文件。当然，它们只会创建一次。
+另外，通过原来的方法签名获得了update的方法索引。
 
 
 ```java
@@ -457,7 +479,7 @@ private static class FastClassInfo{
 }  
 ```
 ## FastClass.invoke
-根据方法索引进行匹配，可以直接调用代理类实例的方法，而不需要像JDK动态代理一样采用反射的方式，所以在方法执行上，cglib的效率会更高。  
+根据方法索引进行匹配，可以直接调用代理类实例的方法，而不需要像JDK动态代理一样采用反射的方式，所以在方法执行上，cglib的效率会更高。
 
 ```java
     //传入参数：
@@ -495,4 +517,6 @@ private static class FastClassInfo{
     }
 ```
 
-> 本文为原创文章，转载请附上原文出处链接：https://github.com/ZhangZiSheng001/cglib-demo
+> 相关源码请移步：https://github.com/ZhangZiSheng001/cglib-demo
+
+> 本文为原创文章，转载请附上原文出处链接： https://www.cnblogs.com/ZhangZiSheng001/p/11917086.html
