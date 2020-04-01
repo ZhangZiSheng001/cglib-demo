@@ -84,19 +84,19 @@ IDE：STS4
 
 ## 引入依赖
 ```xml
-	<!-- cglib -->
-	<dependency>
-		<groupId>cglib</groupId>
-		<artifactId>cglib</artifactId>
-		<version>3.2.5</version>
-	</dependency>
-	<!-- junit -->
-	<dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<version>4.12</version>
-		<scope>test</scope>
-	</dependency>
+    <!-- cglib -->
+    <dependency>
+        <groupId>cglib</groupId>
+        <artifactId>cglib</artifactId>
+        <version>3.2.5</version>
+    </dependency>
+    <!-- junit -->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+    </dependency>
 ```
 
 
@@ -106,18 +106,18 @@ IDE：STS4
 
 ```java
 public class UserController {
-	public void save() {
-		System.out.println("增加用户");
-	}
-	public void delete() {
-		System.out.println("删除用户");
-	}
-	public void update() {
-		System.out.println("修改用户");
-	}
-	public void find() {
-		System.out.println("查找用户");
-	}
+    public void save() {
+        System.out.println("增加用户");
+    }
+    public void delete() {
+        System.out.println("删除用户");
+    }
+    public void update() {
+        System.out.println("修改用户");
+    }
+    public void find() {
+        System.out.println("查找用户");
+    }
 }
 ```
 
@@ -127,21 +127,21 @@ public class UserController {
 ```java
 public class LogInterceptor implements MethodInterceptor {
 
-	@Override
-	public Object intercept( Object obj, Method method, Object[] args, MethodProxy proxy ) throws Throwable {
-		// 设置需要代理拦截的方法
-		HashSet<String> set = new HashSet<String>( 6 );
-		set.add( "save" );
-		set.add( "delete" );
-		set.add( "update" );
-		// 进行日志记录
-		if( method != null && set.contains( method.getName() ) ) {
-			System.out.println( "进行" + method.getName() + "的日志记录" );
-		}
-		// 执行被代理类的方法
-		Object obj2 = proxy.invokeSuper( obj, args );
-		return obj2;
-	}
+    @Override
+    public Object intercept( Object obj, Method method, Object[] args, MethodProxy proxy ) throws Throwable {
+        // 设置需要代理拦截的方法
+        HashSet<String> set = new HashSet<String>( 6 );
+        set.add( "save" );
+        set.add( "delete" );
+        set.add( "update" );
+        // 进行日志记录
+        if( method != null && set.contains( method.getName() ) ) {
+            System.out.println( "进行" + method.getName() + "的日志记录" );
+        }
+        // 执行被代理类的方法
+        Object obj2 = proxy.invokeSuper( obj, args );
+        return obj2;
+    }
 }
 ```
 
@@ -152,45 +152,45 @@ public class LogInterceptor implements MethodInterceptor {
 
 ```java
 public class CglibTest {
-	@Test
-	public void test01() {
-		// 设置输出代理类到指定路径
-		System.setProperty( DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:/growUp/test" );
-		// 创建Enhancer对象，用于生成代理类
-		Enhancer enhancer = new Enhancer();
-		// 设置哪个类需要代理
-		enhancer.setSuperclass( UserController.class );
-		// 设置怎么代理，这里传入的是Callback对象-MethodInterceptor父类
-		LogInterceptor logInterceptor = new LogInterceptor();
-		enhancer.setCallback( logInterceptor );
-		// 获取代理类实例
-		UserController userController = ( UserController )enhancer.create();
-		// 测试代理类
-		System.out.println( "-------------" );
-		userController.save();
-		System.out.println( "-------------" );
-		userController.delete();
-		System.out.println( "-------------" );
-		userController.update();
-		System.out.println( "-------------" );
-		userController.find();
-	}
+    @Test
+    public void test01() {
+        // 设置输出代理类到指定路径
+        System.setProperty( DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:/growUp/test" );
+        // 创建Enhancer对象，用于生成代理类
+        Enhancer enhancer = new Enhancer();
+        // 设置哪个类需要代理
+        enhancer.setSuperclass( UserController.class );
+        // 设置怎么代理，这里传入的是Callback对象-MethodInterceptor父类
+        LogInterceptor logInterceptor = new LogInterceptor();
+        enhancer.setCallback( logInterceptor );
+        // 获取代理类实例
+        UserController userController = ( UserController )enhancer.create();
+        // 测试代理类
+        System.out.println( "-------------" );
+        userController.save();
+        System.out.println( "-------------" );
+        userController.delete();
+        System.out.println( "-------------" );
+        userController.update();
+        System.out.println( "-------------" );
+        userController.find();
+    }
 }
 ```
 
 ## 运行结果
-	CGLIB debugging enabled, writing to 'D:/growUp/test'
-	-------------
-	进行save的日志记录
-	增加用户
-	-------------
-	进行delete的日志记录
-	删除用户
-	-------------
-	进行update的日志记录
-	修改用户
-	-------------
-	查找用户
+    CGLIB debugging enabled, writing to 'D:/growUp/test'
+    -------------
+    进行save的日志记录
+    增加用户
+    -------------
+    进行delete的日志记录
+    删除用户
+    -------------
+    进行update的日志记录
+    修改用户
+    -------------
+    查找用户
 
 # 源码分析-获得代理类的过程
 ## 主要步骤
@@ -369,7 +369,7 @@ public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController im
         //被代理类Class对象
         final Class<?> forName2;
         final Method[] methods = ReflectUtils.findMethods(new String[] { "update", "()V", "find", "()V", "delete", "()V", "save", "()V" }, 
-        		(forName2 = Class.forName("cn.zzs.cglib.UserController")).getDeclaredMethods());
+                (forName2 = Class.forName("cn.zzs.cglib.UserController")).getDeclaredMethods());
         //初始化被代理类update方法
         CGLIB$update$0$Method = methods[0];
         //初始化代理类update方法
@@ -421,7 +421,7 @@ public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController im
 
 
 ```java
-	//传入参数obj：代理类实例
+    //传入参数obj：代理类实例
     public Object invokeSuper(Object obj, Object[] args) throws Throwable {
         try {
             //初始化，创建了两个FastClass类对象，并根据原来的方法签名得到方法索引
@@ -434,23 +434,23 @@ public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController im
             throw e.getTargetException();
         }
     }
-	private void init(){  
-	    if (fastClassInfo == null){  
-	        synchronized (initLock){  
-	            if (fastClassInfo == null){  
-	                CreateInfo ci = createInfo;  
-	                FastClassInfo fci = new FastClassInfo();  
-	                //helper方法用ASM框架去生成了两个FastClass类  
-	                fci.f1 = helper(ci, ci.c1);  
-	                fci.f2 = helper(ci, ci.c2);  
-	                fci.i1 = fci.f1.getIndex(sig1);  
-	                fci.i2 = fci.f2.getIndex(sig2);  
-	                fastClassInfo = fci;  
-	                createInfo = null;  
-	            }  
-	        }  
-	    }  
-	}
+    private void init(){  
+        if (fastClassInfo == null){  
+            synchronized (initLock){  
+                if (fastClassInfo == null){  
+                    CreateInfo ci = createInfo;  
+                    FastClassInfo fci = new FastClassInfo();  
+                    //helper方法用ASM框架去生成了两个FastClass类  
+                    fci.f1 = helper(ci, ci.c1);  
+                    fci.f2 = helper(ci, ci.c2);  
+                    fci.i1 = fci.f1.getIndex(sig1);  
+                    fci.i2 = fci.f2.getIndex(sig2);  
+                    fastClassInfo = fci;  
+                    createInfo = null;  
+                }  
+            }  
+        }  
+    }
 private static class FastClassInfo{  
     FastClass f1;//被代理对象FastClass  
     FastClass f2;//代理对象FastClass  
@@ -487,7 +487,7 @@ private static class FastClassInfo{
                     userController$$EnhancerByCGLIB$$e6f193aa.update();
                     return null;
                 }
-				·······
+                ·······
 
         }
         catch (Throwable t) {
