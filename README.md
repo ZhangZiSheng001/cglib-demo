@@ -482,12 +482,13 @@ private static class FastClassInfo{
                 case 3: {
                     return userController$$EnhancerByCGLIB$$e6f193aa.clone();
                 }
-                case 4: {
-                    //通过匹配方法索引，直接调用该方法
-                    userController$$EnhancerByCGLIB$$e6f193aa.update();
+                // ·······
+                case 24: {
+                    // 通过匹配方法索引，直接调用该方法，这个方法将直接调用代理类的超类的方法
+                    userController$$EnhancerByCGLIB$$e6f193aa.CGLIB$update$0();
                     return null;
                 }
-                ·······
+                // ·······
 
         }
         catch (Throwable t) {
