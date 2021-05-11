@@ -2,10 +2,9 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.zzs.cglib</groupId>
-    <artifactId>cglib-demo</artifactId>
+    <artifactId>01-cglib-demo</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
-    <name>cglib-demo</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <!-- cglib -->
