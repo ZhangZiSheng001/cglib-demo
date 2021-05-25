@@ -4,6 +4,7 @@
     <groupId>cn.zzs.cglib</groupId>
     <artifactId>cglib-demo</artifactId>
     <packaging>jar</packaging>
+    <version>1.0.0</version>
     <dependencies>
         <!-- cglib -->
         <dependency>
