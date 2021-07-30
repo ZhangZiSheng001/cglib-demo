@@ -1,14 +1,14 @@
 # 什么是cglib
 
-简单来说，cglib 就是用来生成代理类的。与 JDK 自带的动态代理相比，有以下几点不同： 
+简单来说，cglib 就是用来自动生成代理类的。与 JDK 自带的动态代理相比，有以下几点不同： 
 
 1. JDK 动态代理要求被代理类实现某个接口，而 cglib 无该要求。 
 
-2. 在目标方法的执行速度上，由于采用了`FastClass`机制，cglib 更快（以空间换时间，后面会讲到）。 
+2. **在目标方法的执行速度上，由于采用了`FastClass`机制，cglib 更快**（以空间换时间，后面会讲到）。 
 
 # 常见的动态代理有哪些？
 
-我们接触比较多的一般是 JDK 动态代理和本文讲到的 cglib，这两个类库都是运行时生成代理类。spring-aop 同时使用了这两种类库。
+我们接触比较多的一般是 JDK 动态代理和本文讲到的 cglib，这两个类库都是**运行时生成代理类**。spring-aop 同时使用了这两种类库。
 
 另外，还有`javassit`和`aspectJ`等第三方类库， 它们既能编译时生成代理类，也能在运行时生成代理类。本文不作扩展，感兴趣的可以研究下。
 
@@ -42,7 +42,7 @@ class UserController {
 		return Response.of(user);
 	}
 	
-	// ······
+	// zzs001······
 }
 ```
 
@@ -138,13 +138,13 @@ class UserControllerCommonLogProxy extends UserController {
 
 上面例子中，我不直接访问`UserController`，而是通过`UserControllerCommonLogProxy`来间接访问。其实，这就是代理，严格来说属于**静态代理**，和接下来要讲的动态代理不太一样。
 
-静态代理解决了代码耦合的问题，但这种做法产生了一个新的问题：**需要手动创建和维护大量的代理类**。我需要为每一个`Controller`都增加一个`Proxy`，而且，当`UserController`增加方法时，需要在对应的`Proxy`中实现。
+静态代理解决了代码耦合的问题，但这种做法产生了一个新的问题：**需要手动创建和维护大量的代理类**。我需要为每一个`Controller`都增加一个`Proxy`，项目中将会有大量的`*Proxy`，而且，当`UserController`增加方法时，需要在对应的`Proxy`中实现。
 
 这个时候，我们会想，要是代理类能自动生成该多好。于是，动态代理就派上用场了。
 
-我们只要定义好代理类的逻辑，动态代理就能帮我们生成对应的代理类（可以在编译时生成，也可以在运行时生成），而不需要我们手动创建。下面的这段代码就是在定义代理类的逻辑。
+**我们只要定义好代理类的逻辑，动态代理就能帮我们生成对应的代理类（可以在编译时生成，也可以在运行时生成），而不需要我们手动创建**。下面的这段代码就是在定义代理类的逻辑。
 
-所以，我们用动态代理，本质上是为了更简单方便地实现 AOP。
+所以，**我们用动态代理，本质上是为了更简单方便地实现 AOP**。
 
 # 如何使用cglib
 
@@ -156,7 +156,7 @@ JDK：1.8.0_231
 
 maven：3.6.3
 
-IDE：ideaIC-2021.1.win
+IDE：Spring Tool Suite 4.6.1.RELEASE
 
 ## 引入依赖
 
@@ -180,13 +180,13 @@ IDE：ideaIC-2021.1.win
 
 ## 定义代理类的逻辑
 
-首先，我们需要定义好代理类的逻辑，实现`MethodInterceptor`接口即可。根据 aop 联盟的标准（可以自行了解下），`MethodInterceptor`属于一种`Advice`。
+首先，我们需要在某个地方定义好代理类的逻辑，在本文的例子中，代理的逻辑就是在方法执行前打印入参，方法执行后打印出参。我们可以通过实现`MethodInterceptor`接口来定义这些逻辑。根据 aop 联盟的标准（可以自行了解下），`MethodInterceptor`属于一种`Advice`。
 
-需要注意一点，这里要通过`proxy.invokeSuper`来调用目标类的方法，而不是使用`method.invoke`。
+需要注意一点，**这里要通过`proxy.invokeSuper`来调用目标类的方法，而不是使用`method.invoke`，不然会出现栈溢出等问题**。如果你非要调用`method.invoke`，你需要把目标类对象作为`LogInterceptor`的成员属性，在调用`method.invoke`时将它作为入参，而不是使用`MethodInterceptor.intercept`的入参 obj，但是，我不推荐你这么做，因为你将无法享受到 cglib 代理类执行快的优势（然而还是很多人这么做）。
 
 ```java
 public class LogInterceptor implements MethodInterceptor {
-
+	// 这里传入的obj是代理类对象，而不是目标类对象
     public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
         System.err.println("打印" + method.getName() + "方法的入参");
         // 注意，这里要调用proxy.invokeSuper，而不是method.invoke，不然会出现栈溢出等问题
@@ -199,7 +199,7 @@ public class LogInterceptor implements MethodInterceptor {
 
 ## 获取代理类
 
-我们主要通过`Enhancer`来配置、获取代理类对象，下面的代码挺好理解的，我们需要告诉 cglib，我要代理谁，如何代理。
+我们主要通过`Enhancer`来配置、获取代理类对象，下面的代码挺好理解的，我们需要告诉 cglib，**我要代理谁，代理的逻辑放在哪里**。
 
 ```java
 @Test
@@ -226,7 +226,7 @@ public void testBase() throws InterruptedException {
 }
 ```
 
-这里，我们也可以同时设置多个`Callback`，但是，一个方法一般只能对应一个`Callback`，所以，我们需要设置`CallbackFilter`来指定每个方法使用的是哪个`Callback`。
+我们也可以同时设置多个`Callback`，需要注意的是，**设置了多个`Callback`不是说一个方法可以被多个`Callback`拦截，而是说目标类中不同的方法可以被不同的`Callback`拦截**。所以，当设置了多个`Callback`时，cglib 需要知道哪些方法使用哪个`Callback`，我们需要额外设置`CallbackFilter`来指定每个方法使用的是哪个`Callback`。项目中我也提供了例子。
 
 ## 运行结果
 
@@ -255,9 +255,9 @@ public void testBase() throws InterruptedException {
 
 接下来我们来看看 cglib 的源码。
 
-cglib 如何生成代理类的源码就不分析了，我们只要记住两点就行，1. cglib 的代理类会缓存起来，不会重复创建；2. 使用的是 asm 来生成`Class`文件。
+cglib **如何生成代理类**的源码就不分析了，感兴趣的可以自行研究（cglib 的源码可读性还是很强的），我们只要记住两点就行，1. cglib 的代理类会缓存起来，不会重复创建；2. 使用的是 asm 来生成`Class`文件。
 
-我们直接来看代理类方法执行的源码。
+我们直接来看**代理类方法执行**的源码。
 
 ## 代理类文件
 
@@ -327,7 +327,7 @@ public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController im
 
 ## 创建FastClass文件
 
-在`MethodProxy.invokeSuper(Object, Object[])`方法中，我们会发现，两个`FastClass`文件是在`init`方法中生成的。当然，它们也只会创建一次，并且作为单例使用。
+在`MethodProxy.invokeSuper(Object, Object[])`方法中，我们会发现，两个`FastClass`文件是在`init`方法中生成的。当然，它们也只会创建一次。
 
 我们用到的主要是代理类的`FastClass`，通过它，我们可以直接调用到`CGLIB$update$0`方法，相当于可以直接调用目标类的`update`方法。
 
@@ -406,12 +406,17 @@ public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController im
     }
 ```
 
-以上基本分析完 cglib 代理类方法的执行过程的源码。当然，cglib 还有其他好玩的特性，感兴趣的可以自行研究下（cglib 的源码可读性还是非常高的），也欢迎私信交流。
+通过上面的分析，我们找到了 cglib 代理类执行起来更快的原因。
+
+# 结语
+
+以上基本讲完 cglib 的使用和源码分析。
 
 最后，感谢阅读。
 
-> 2021-04-27更改
+> 2021-07-30更改
 
 > 相关源码请移步：https://github.com/ZhangZiSheng001/cglib-demo
 
 > 本文为原创文章，转载请附上原文出处链接：https://www.cnblogs.com/ZhangZiSheng001/p/11917086.html
+

@@ -49,6 +49,9 @@ public class CglibTest {
         enhancer.setCallbacks(new Callback[]{new LogInterceptor(), new PermissionInterceptor()});
         enhancer.setCallbackFilter(new CallbackFilter() {
             public int accept(Method method) {
+                if("delete".equals(method.getName())) {
+                    return 1;
+                }
                 return 0;
             }
         });
