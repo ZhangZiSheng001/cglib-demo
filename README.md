@@ -86,7 +86,7 @@ class UserController {
 		return response;
 	}
 	
-	// ······
+	// zzs001······
 }
 ```
 
@@ -132,7 +132,7 @@ class UserControllerCommonLogProxy extends UserController {
 		return response;
 	}
 	
-	// ······
+	// zzs001······
 }
 ```
 
@@ -142,7 +142,7 @@ class UserControllerCommonLogProxy extends UserController {
 
 这个时候，我们会想，要是代理类能自动生成该多好。于是，动态代理就派上用场了。
 
-**我们只要定义好代理类的逻辑，动态代理就能帮我们生成对应的代理类（可以在编译时生成，也可以在运行时生成），而不需要我们手动创建**。下面的这段代码就是在定义代理类的逻辑。
+**我们只要定义好代理类的逻辑，动态代理就能帮我们生成对应的代理类（可以在编译时生成，也可以在运行时生成），而不需要我们手动创建**。
 
 所以，**我们用动态代理，本质上是为了更简单方便地实现 AOP**。
 
@@ -281,7 +281,7 @@ public class UserController$$EnhancerByCGLIB$$e6f193aa extends UserController im
     private static final ThreadLocal CGLIB$THREAD_CALLBACKS;
     private static final Callback[] CGLIB$STATIC_CALLBACKS;
 
-    //我们一开始传入的MethodInterceptor对象
+    //我们一开始传入的MethodInterceptor对象  zzs001
     private MethodInterceptor CGLIB$CALLBACK_0;
     private static Object CGLIB$CALLBACK_FILTER;
     //目标类的update方法对象
